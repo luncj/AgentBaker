@@ -184,6 +184,7 @@ fi
 
 # no source image on marketplace, use MSFT/AME SIG as source image
 if [[ ${ARCHITECTURE,,} == "arm64" ]]; then
+  ARM64_OS_DISK_SNAPSHOT_NAME="arm64_os_disk_snapshot_${CREATE_TIME}"
   ARM64_SIG_SUBSCRIPTION_ID="a84c0852-ea2d-4359-88e4-11a80a4fb6b9"
   ARM64_SIG_RESOURCE_GROUP_NAME="ARM64_External_RG"
   ARM64_SIG_GALLERY_NAME="SantaClaraSIG"
@@ -214,6 +215,7 @@ cat <<EOF > vhdbuilder/packer/settings.json
   "arm64_sig_gallery_name": "${ARM64_SIG_GALLERY_NAME}",
   "arm64_sig_image_name": "${ARM64_SIG_IMAGE_NAME}",
   "arm64_sig_image_version": "${ARM64_SIG_IMAGE_VERSION}"
+  "arm64_os_disk_snapshot_name": "${ARM64_OS_DISK_SNAPSHOT_NAME}"
 }
 EOF
 
