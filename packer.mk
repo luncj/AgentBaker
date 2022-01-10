@@ -5,7 +5,7 @@ ifeq (${OS_SKU},Ubuntu)
 ifeq (${ARCHITECTURE},ARM64)
 ifeq (${MODE},gen2Mode)
 	@echo "${MODE}: Building with Hyper-v generation 2 ARM64 VM"
-	packer build -var-file=vhdbuilder/packer/settings.json vhdbuilder/packer/vhd-image-builder-arm64-gen2.json
+	@packer build -var-file=vhdbuilder/packer/settings.json vhdbuilder/packer/vhd-image-builder-arm64-gen2.json
 	@echo "${MODE}: Building with Hyper-v generation 2 ARM64 VM - completed"
 else ifeq (${MODE},sigMode)
 	$(error sigMode not supported yet)
