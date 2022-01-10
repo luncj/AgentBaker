@@ -81,6 +81,7 @@ stages:
             -e ARCHITECTURE=${ARCHITECTURE} \
             ${CONTAINER_IMAGE} make -f packer.mk run-packer
           displayName: Building VHD
+          continueOnError: eq(variables.ARCHITECTURE, 'ARM64')
         - script: |
             OS_DISK_URI="$(cat packer-output | grep "OSDiskUri:" | cut -d " " -f 2)" && \
             docker run --rm \
