@@ -53,7 +53,6 @@ steps:
         -e ARCHITECTURE=${ARCHITECTURE} \
         ${CONTAINER_IMAGE} make -f packer.mk run-packer
     displayName: Building VHD
-    continueOnError: eq(variables.ARCHITECTURE, 'ARM64')
   - script: |
         OS_DISK_URI="$(cat packer-output | grep "OSDiskUri:" | cut -d " " -f 2)" && \
         MANAGED_SIG_ID="$(cat packer-output | grep "ManagedImageSharedImageGalleryId:" | cut -d " " -f 2)" && \
