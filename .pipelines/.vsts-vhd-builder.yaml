@@ -85,8 +85,6 @@ stages:
           continueOnError: true
         - bash: |
             echo MODE=$(MODE) && \
-            create_time="$(cat vhdbuilder/packer/settings.json | grep "create_time" | awk -F':' '{print $2}' | awk -F'"' '{print $2}')" && \
-            SIG_IMAGE_NAME="$(cat vhdbuilder/packer/settings.json | grep "sig_image_name" | awk -F':' '{print $2}' | awk -F'"' '{print $2}')" && \
             docker run --rm \
             -v ${PWD}:/go/src/github.com/Azure/AgentBaker \
             -w /go/src/github.com/Azure/AgentBaker \
@@ -101,9 +99,9 @@ stages:
             -e CLASSIC_BLOB=${CLASSIC_BLOB} \
             -e CLASSIC_SAS_TOKEN="$(SAS_TOKEN)" \
             -e SIG_IMAGE_NAME=${SIG_IMAGE_NAME} \
-            ${CONTAINER_IMAGE} make -f packer.mk convert-arm64-os-disk-snapshot-to-sig
+            ${CONTAINER_IMAGE} make -f packer.mk convert-os-disk-snapshot-to-sig
           displayName: Convert ARM64 OS Disk Snapshot to SIG
-          condition: and(eq(variables.DRY_RUN, 'False'), eq(variables['MODE'], 'gen2Mode'), eq(variables.ARCHITECTURE, 'ARM64'))
+          condition: and(eq(variables.DRY_RUN, 'False'), eq(variables['MODE'], 'gen2Mode'), eq(variables['ARCHITECTURE'], 'ARM64'))
         - script: |
             OS_DISK_URI="$(cat packer-output | grep "OSDiskUri:" | cut -d " " -f 2)" && \
             docker run --rm \
