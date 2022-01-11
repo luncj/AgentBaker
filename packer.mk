@@ -78,3 +78,5 @@ windows-vhd-publishing-info: az-login
 test-building-vhd: az-login
 	@./vhdbuilder/packer/test/run-test.sh
 
+convert-arm64-os-disk-snapshot-to-sig: az-login
+	@./vhdbuilder/packer/convert-arm64-osdisk-snapshot-to-sig.sh
