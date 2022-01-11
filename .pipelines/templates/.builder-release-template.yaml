@@ -59,6 +59,7 @@ steps:
         echo MODE=$(MODE) && \
         ARM64_OS_DISK_SNAPSHOT_NAME="$(cat vhdbuilder/packer/settings.json | grep "arm64_os_disk_snapshot_name" | awk -F':' '{print $2}' | awk -F'"' '{print $2}')" && \
         create_time="$(cat vhdbuilder/packer/settings.json | grep "create_time" | awk -F':' '{print $2}' | awk -F'"' '{print $2}')" && \
+        SIG_IMAGE_NAME="$(cat vhdbuilder/packer/settings.json | grep "sig_image_name" | awk -F':' '{print $2}' | awk -F'"' '{print $2}')" && \
         echo CLIENT_ID=${CLIENT_ID} && \
         echo CLIENT_SECRET="$(CLIENT_SECRET)" && \
         echo TENANT_ID=${TENANT_ID} && \
